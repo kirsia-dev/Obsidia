@@ -1,5 +1,5 @@
 --// credit: Obsidia
---// modified: .badmagazine
+--// modified: kirsia
 
 local HttpService = game:GetService("HttpService")
 local UserInputService = game:GetService("UserInputService")

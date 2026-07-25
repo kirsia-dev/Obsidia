@@ -1,0 +1,190 @@
+local Obsidia = loadstring(game:HttpGet("https://raw.githubusercontent.com/kirsia-dev/Obsidia/refs/heads/main/Obsidia.lua"))()
+
+obsidia("Script loaded successfully!", 5, Color3.fromRGB(127, 0, 255), "Obsidia", "| Example")
+
+local Window = Obsidia:Window({
+    Title = "Obsidia",
+    Footer = "| UI Development",
+    Color = Color3.fromRGB(127, 0, 255),
+    ["Tab Width"] = 120,
+    Version = 1,
+    Image = "rbxassetid://128938022549350",
+    Theme = 9542022979,
+    ThemeTransparency = 0.15,
+    Folder = "ObsidiaExample",
+})
+
+local Tabs = {
+    Paragraph = Window:AddTab({ Name = "Paragraph", Icon = "scroll"    }),
+    Notify = Window:AddTab({ Name = "Notify", Icon = "alert" }),
+    Button = Window:AddTab({ Name = "Button", Icon = "start" }),
+    Toggle = Window:AddTab({ Name = "Toggle", Icon = "stat" }),
+    Input = Window:AddTab({ Name = "Input", Icon = "scan" }),
+    Slider = Window:AddTab({ Name = "Slider", Icon = "dcs" }),
+    Dropdown = Window:AddTab({ Name = "Dropdown", Icon = "menu" }),
+    Config = Window:AddTab({ Name = "Config", Icon = "settings" }),
+}
+
+-- [[ Paragraph ]]
+local ParagraphSection = Tabs.Paragraph:AddSection("Paragraph", true)
+
+ParagraphSection:AddParagraph({
+    Title = "Welcome!",
+    Content = "Welcome to Obsidia UI Library.",
+    Icon = "star",
+})
+
+ParagraphSection:AddParagraph({
+    Title = "About",
+    Content = "Obsidia is a lightweight and elegant Roblox UI library.",
+})
+
+-- [[ Notify ]]
+local NotifySection = Tabs.Notify:AddSection("Notify", true)
+
+NotifySection:AddButton({
+    Title = "Send Notification",
+    Callback = function()
+        obsidia("Hello from Obsidia!", 5, Color3.fromRGB(127, 0, 255), "Obsidia", "| Notify")
+    end,
+})
+
+NotifySection:AddButton({
+    Title = "Success Notify",
+    SubTitle = "Error Notify",
+    Callback = function()
+        obsidia("Action completed!", 4, Color3.fromRGB(100, 255, 100), "Obsidia", "| Success")
+    end,
+    SubCallback = function()
+        obsidia("Something went wrong!", 4, Color3.fromRGB(255, 100, 100), "Obsidia", "| Error")
+    end,
+})
+
+-- [[ Button ]]
+local ButtonSection = Tabs.Button:AddSection("Button", true)
+
+ButtonSection:AddButton({
+    Title = "Button Only",
+    Callback = function()
+        obsidia("Button clicked!", 3, Color3.fromRGB(127, 0, 255))
+    end,
+})
+
+ButtonSection:AddDivider()
+
+ButtonSection:AddButton({
+    Title = "Primary Action",
+    SubTitle = "Secondary Action",
+    Callback = function()
+        obsidia("Primary!", 3, Color3.fromRGB(127, 0, 255))
+    end,
+    SubCallback = function()
+        obsidia("Secondary!", 3, Color3.fromRGB(200, 100, 255))
+    end,
+})
+
+-- [[ Toggle ]]
+local ToggleSection = Tabs.Toggle:AddSection("Toggle", true)
+
+local AutoFarm = ToggleSection:AddToggle({
+    Title = "Auto Farm",
+    Content = "Automatically farms resources.",
+    Default = false,
+    Callback = function(Value)
+        -- your auto farm logic
+    end,
+})
+
+ToggleSection:AddToggle({
+    Title = "God Mode",
+    Default = false,
+    Callback = function(Value)
+        -- your god mode logic
+    end,
+})
+
+ToggleSection:AddSubSection("Extra")
+
+ToggleSection:AddToggle({
+    Title = "Speed Boost",
+    Content = "Increases walk speed.",
+    Default = false,
+    Callback = function(Value)
+        -- your speed logic
+    end,
+})
+
+-- [[ Input ]]
+local InputSection = Tabs.Input:AddSection("Input", true)
+
+local TargetInput = InputSection:AddInput({
+    Title = "Target Player",
+    Default = "",
+    Callback = function(Value)
+        -- handle player target
+    end,
+})
+
+InputSection:AddInput({
+    Title = "Custom Value",
+    Default = "100",
+    Callback = function(Value)
+        -- handle value
+    end,
+})
+
+-- [[ Slider ]]
+local SliderSection = Tabs.Slider:AddSection("Slider", true)
+
+local WalkSpeed = SliderSection:AddSlider({
+    Title = "Walk Speed",
+    Content = "Set player walk speed.",
+    Min = 16,
+    Max = 500,
+    Increment = 1,
+    Default = 16,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end,
+})
+
+local JumpPower = SliderSection:AddSlider({
+    Title = "Jump Power",
+    Min = 50,
+    Max = 500,
+    Increment = 5,
+    Default = 50,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+    end,
+})
+
+-- [[ Dropdown ]]
+local DropdownSection = Tabs.Dropdown:AddSection("Dropdown", true)
+
+DropdownSection:AddDropdown({
+    Title = "Select Team",
+    Content = "Choose your team.",
+    Options = { "Red Team", "Blue Team", "Green Team" },
+    Default = nil,
+    Multi = false,
+    Callback = function(Value)
+        -- handle team selection
+    end,
+})
+
+DropdownSection:AddDropdown({
+    Title = "Select Items",
+    Content = "Choose multiple items.",
+    Options = { "Sword", "Shield", "Bow", "Staff" },
+    Default = {},
+    Multi = true,
+    Callback = function(Value)
+        -- handle multi selection
+    end,
+})
+
+-- [[ Config ]]
+local ConfigSection = Tabs.Config:AddSection("Config Manager", true)
+
+ConfigSection:AddConfigPanel()
